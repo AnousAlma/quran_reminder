@@ -1,14 +1,18 @@
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from email.message import EmailMessage
 from email.utils import formataddr
 import ssl
 import smtplib
 
-load_dotenv()
+# load_dotenv()
 
 SENDER = "quranreminderbot@gmail.com"
-PASSWORD = os.getenv('PASSWORD')
+try:
+    PASSWORD = os.environ['PASSWORD']
+except KeyError:
+    print("Password not found in environment variables")
+
 CONTEXT = ssl.create_default_context()
 PORT = 465
 
