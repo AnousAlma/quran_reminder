@@ -2,8 +2,7 @@ name: run main.py
 
 on:
   schedule:
-    # - cron: '0 20 * * *' # At 15:00 Everyday
-    - cron: '*/5 * * * *' # Every 5 minutes
+    - cron: '0 20 * * *' # At 15:00 Everyday
 
 
 jobs:
@@ -35,9 +34,3 @@ jobs:
           git config --local user.name "GitHub Action"
           git add -A
           git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
-          
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main 
