@@ -16,7 +16,7 @@ def query_data_and_send_emails(df):
     present = date.today()
     email_counter = 0
     for _, row in df.iterrows():
-        days_left = (row["last_date"].date() - present).days + 7
+        days_left = (row["last_date"].date() - present).days + 8
         send_email(RECEIVER, row["surah"], days_left)
         email_counter += 1
 
