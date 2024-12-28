@@ -14,15 +14,28 @@ def load_df(url):
 
 def query_data_and_send_emails(df):
     present = date.today()
-    email_counter = 0
+    surahs = 0
+    data = {}
+    body = ""
     for _, row in df.iterrows():
-        days_left = (row["last_date"].date() - present).days + 8
-        send_email(RECEIVER, row["surah"], days_left)
-        email_counter += 1
+        days_left = (row["last_date"].date() - present).days + 7
+        data[row["surah"]] = days_left
+        if days_left >= 4:
+            emoji = "🟢"
+        elif days_left >= 1:
+            emoji = "🟡"
+        else:
+            emoji = "🚨"
+        
+        body = f"{body}{emoji} Surah: {row['surah']}, Days left: {days_left}\n\n"
+        surahs += 1
+    
+    most_urgent_surah = min(data, key=data.get)
+    send_email(RECEIVER, most_urgent_surah, data[most_urgent_surah], body)
 
-    return email_counter
+    return surahs
 
 if __name__ == "__main__":
     df = load_df(URL)
     email_counter = query_data_and_send_emails(df)
-    print(f"{email_counter} emails sent successfully.")
+    print(f"Reminder for {email_counter} surahs sent.")
