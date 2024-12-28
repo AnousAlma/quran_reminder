@@ -1,8 +1,12 @@
 import pandas as pd
 from emailing import send_email
 from datetime import date
+import os
+from dotenv import load_dotenv
 
-SHEET_ID = "15yQvQxijxx2P30EYxyPebOLZBKuWArAKkktIs67ND9I"
+load_dotenv()
+
+SHEET_ID = os.environ['SHEETS_ID']
 SHEET_NAME = "Sheet1"
 URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}"
 RECEIVER = "anaskhaldoun2@gmail.com"
