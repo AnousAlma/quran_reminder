@@ -2,9 +2,9 @@ import pandas as pd
 from emailing import send_email
 from datetime import date
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 try:
     SHEET_ID = os.environ['SHEETS_ID']
