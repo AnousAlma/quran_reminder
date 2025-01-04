@@ -4,13 +4,9 @@ from datetime import date
 import os
 from dotenv import load_dotenv
 
+SHEET_ID = "15yQvQxijxx2P30EYxyPebOLZBKuWArAKkktIs67ND9I"
 load_dotenv()
-
-try:
-    SHEET_ID = os.getenv('SHEETS_ID')
-except KeyError:
-    print("Password not found in environment variables")
-
+SHEET_ID = os.environ['SHEETS_ID']
 SHEET_NAME = "Sheet1"
 URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}"
 RECEIVER = "anaskhaldoun2@gmail.com"
@@ -34,10 +30,10 @@ def query_data_and_send_emails(df):
             emoji = "🟡"
         else:
             emoji = "🚨"
-        
+
         body = f"{body}{emoji} Surah: {row['surah']}, Days left: {days_left}\n\n"
         surahs += 1
-    
+
     most_urgent_surah = min(data, key=data.get)
     send_email(RECEIVER, most_urgent_surah, data[most_urgent_surah], body)
 
@@ -46,4 +42,3 @@ def query_data_and_send_emails(df):
 if __name__ == "__main__":
     df = load_df(URL)
     email_counter = query_data_and_send_emails(df)
-    print(f"Reminder for {email_counter} surahs sent.")
