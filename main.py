@@ -6,7 +6,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-SHEET_ID = os.environ['SHEETS_ID']
+try:
+    SHEET_ID = os.environ['SHEETS_ID']
+except KeyError:
+    print("Password not found in environment variables")
+
 SHEET_NAME = "Sheet1"
 URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}"
 RECEIVER = "anaskhaldoun2@gmail.com"
