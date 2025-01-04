@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 try:
-    SHEET_ID = os.getenv('SHEETS_ID')
+    SHEET_ID = os.getenv('PASSWORD')
 except KeyError:
     print("Password not found in environment variables")
 
