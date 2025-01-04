@@ -13,6 +13,7 @@ except KeyError:
 
 SHEET_NAME = "Sheet1"
 URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}"
+print(URL)
 RECEIVER = "anaskhaldoun2@gmail.com"
 
 def load_df(url):
