@@ -26,6 +26,7 @@ jobs:
       - name: execute py script # run main.py
         env:
           PASSWORD: ${{ secrets.PASSWORD }}
+          SHEETS_ID: ${{ secrets.SHEETS_ID }}
         run: python main.py
           
       - name: commit files
